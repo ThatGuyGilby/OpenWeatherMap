@@ -20,14 +20,17 @@ import java.util.Properties;
 
 public class ConnectionManager
 {
+    // !!!Placeholder main for testing purposes only, remove when getRequest method is accessed from elsewhere!!!
     public static void main(String[] args) {
         ConnectionManager connectionManager = new ConnectionManager();
         connectionManager.getRequest("https://api.openweathermap.org/data/2.5/weather?q=London&appid=");
     }
 
 
-    ObjectMapper objectMapper = new ObjectMapper();
 
+    /* A Private Method that holds the access to the api.properties file
+    *  Intended to allow the use of any API Key inserted in the file
+    *  without giving away the api key and hosting it on GitHub */
     private String getAPIKey(){
         String apiKey = null;
         try (InputStream inputStream = new FileInputStream("src/main/resources/api.properties")) {
@@ -39,15 +42,17 @@ public class ConnectionManager
             e.printStackTrace();
         }
 
-        return apiKey;
+        return apiKey; // Returns the API Key found in the api.properties file
     }
 
 //    public void getWeather(){
-//
+//          While commented out, this could provide useful in the future
 //    }
 
-    public void getRequest(String url){
-        String apiKey = getAPIKey();
+    
+    public Weather getRequest(String url){
+        ObjectMapper objectMapper = new ObjectMapper();
+        String apiKey = getAPIKey(); // Acquires the API Key
         Weather myObj = null;
 
         try {
@@ -56,16 +61,13 @@ public class ConnectionManager
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (myObj != null){
-            getJSONArray(myObj);
-        }
+        return myObj;
     }
 
-//    public void getResponse(HttpRequest request){
-//
-//    }
-//
-    public void getJSONArray(Weather weather){
+
+    /* For future reference, this splits the data apart into their Jackson related file formats
+
+    private void getJSONArray(Weather weather){
         Clouds clouds = weather.getClouds();
         Coord coord = weather.getCoord();
         Main main = weather.getMain();
@@ -73,8 +75,12 @@ public class ConnectionManager
         List<WeatherItem> weather1 = weather.getWeather();
         Wind wind = weather.getWind();
 
-        System.out.println(clouds + "\n" + coord + "\n" + main + "\n" + sys + "\n" + weather1 + "\n" + wind);
-
-
+        System.out.println(clouds + "\n"
+                + coord + "\n"
+                + main + "\n"
+                + sys + "\n"
+                + weather1 + "\n"
+                + wind);
     }
+    */
 }
