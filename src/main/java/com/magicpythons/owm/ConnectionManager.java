@@ -3,6 +3,7 @@ package com.magicpythons.owm;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -59,6 +60,36 @@ public class ConnectionManager
         return null;
     }
 
+    public JSONObject getResponseAsJSONObject(HttpResponse response, String key) {
+        try {
+            String responseBody = (String) response.body();
+            JSONParser jsonParser = new JSONParser();
+
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(responseBody);
+
+            return (JSONObject) jsonObject.get(key);
+
+        } catch (org.json.simple.parser.ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Object getResponseAsObject(HttpResponse response, String key) {
+        try {
+            String responseBody = (String) response.body();
+            JSONParser jsonParser = new JSONParser();
+
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(responseBody);
+
+            return jsonObject.get(key);
+
+        } catch (org.json.simple.parser.ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public JSONArray getResponseAsJSONArray(HttpResponse response, String key) {
         try {
             String responseBody = (String) response.body();
@@ -68,7 +99,7 @@ public class ConnectionManager
 
             return (JSONArray) jsonObject.get(key);
 
-        } catch (org.json.simple.parser.ParseException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         return null;
