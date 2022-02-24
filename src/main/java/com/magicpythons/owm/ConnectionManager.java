@@ -4,16 +4,21 @@ import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.magicpythons.owm.weather.*;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -21,11 +26,6 @@ import java.util.Properties;
 public class ConnectionManager
 {
     // !!!Placeholder main for testing purposes only, remove when getRequest method is accessed from elsewhere!!!
-    public static void main(String[] args) {
-        ConnectionManager connectionManager = new ConnectionManager();
-        connectionManager.getRequest("https://api.openweathermap.org/data/2.5/weather?q=London&appid=");
-    }
-
 
 
     /* A Private Method that holds the access to the api.properties file
@@ -49,19 +49,38 @@ public class ConnectionManager
 //          While commented out, this could provide useful in the future
 //    }
 
-    
-    public Weather getRequest(String url){
-        ObjectMapper objectMapper = new ObjectMapper();
-        String apiKey = getAPIKey(); // Acquires the API Key
-        Weather myObj = null;
 
+    public HttpRequest getRequest(String url) {
+        String apiKey = getAPIKey();
+        return HttpRequest
+                .newBuilder()
+                .uri(URI.create(url + apiKey))
+                .build();
+    }
+
+
+    public HttpResponse<String> getResponse(HttpClient client, HttpRequest request) {
         try {
-            myObj = objectMapper.readValue(new URL(url + apiKey), Weather.class);
-
-        } catch (IOException e) {
+            return client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
-        return myObj;
+        return null;
+    }
+
+    public JSONArray getResponseAsJSONArray(HttpResponse response, String key) {
+        try {
+            String responseBody = (String) response.body();
+            JSONParser jsonParser = new JSONParser();
+
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(responseBody);
+
+            return (JSONArray) jsonObject.get(key);
+
+        } catch (org.json.simple.parser.ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 
