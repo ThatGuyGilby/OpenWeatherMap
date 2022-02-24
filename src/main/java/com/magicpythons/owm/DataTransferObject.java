@@ -203,68 +203,37 @@ public class DataTransferObject {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(DataTransferObject.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("coord");
-        sb.append('=');
-        sb.append(((this.coord == null)?"<null>":this.coord));
-        sb.append(',');
-        sb.append("weather");
-        sb.append('=');
-        sb.append(((this.weather == null)?"<null>":this.weather));
-        sb.append(',');
-        sb.append("base");
-        sb.append('=');
-        sb.append(((this.base == null)?"<null>":this.base));
-        sb.append(',');
-        sb.append("main");
-        sb.append('=');
-        sb.append(((this.main == null)?"<null>":this.main));
-        sb.append(',');
-        sb.append("visibility");
-        sb.append('=');
-        sb.append(((this.visibility == null)?"<null>":this.visibility));
-        sb.append(',');
-        sb.append("wind");
-        sb.append('=');
-        sb.append(((this.wind == null)?"<null>":this.wind));
-        sb.append(',');
-        sb.append("clouds");
-        sb.append('=');
-        sb.append(((this.clouds == null)?"<null>":this.clouds));
-        sb.append(',');
-        sb.append("dt");
-        sb.append('=');
-        sb.append(((this.dt == null)?"<null>":this.dt));
-        sb.append(',');
-        sb.append("sys");
-        sb.append('=');
-        sb.append(((this.sys == null)?"<null>":this.sys));
-        sb.append(',');
-        sb.append("timezone");
-        sb.append('=');
-        sb.append(((this.timezone == null)?"<null>":this.timezone));
-        sb.append(',');
-        sb.append("id");
-        sb.append('=');
-        sb.append(((this.id == null)?"<null>":this.id));
-        sb.append(',');
-        sb.append("name");
-        sb.append('=');
-        sb.append(((this.name == null)?"<null>":this.name));
-        sb.append(',');
-        sb.append("cod");
-        sb.append('=');
-        sb.append(((this.cod == null)?"<null>":this.cod));
-        sb.append(',');
-        sb.append("additionalProperties");
-        sb.append('=');
+        sb.append("\ncoord = ");
+        sb.append(" lon: " + coord.getLon() + " | lat: " + coord.getLat());
+        sb.append("\nweather = ");
+        sb.append(" id: " + weather.get(0).getId() + " | main: " + weather.get(0).getMain() +
+                " | description: " + weather.get(0).getDescription() + " | icon: " + weather.get(0).getIcon());
+        sb.append("\nbase = ");
+        sb.append(base);
+        sb.append("\nmain = ");
+        sb.append("temp: " + main.getTemp() + " | feels_like: " + main.getFeelsLike() + " | temp_min: " + main.getTempMin() +
+                " | temp_max: " + main.getTempMax() + " | pressure: " + main.getPressure() + " | humidity: " + main.getHumidity());
+        sb.append("\nvisibility = ");
+        sb.append(visibility);
+        sb.append("\nwind = ");
+        sb.append("speed: " + wind.getSpeed() + " | deg: " + wind.getDeg());
+        sb.append("\nclouds = ");
+        sb.append("all: " + clouds.getAll());
+        sb.append("\ndt = ");
+        sb.append(dt);
+        sb.append("\nsys = ");
+        sb.append("type: " + sys.getType() + " | id: " + sys.getId() + " | message: " + sys.getMessage() +
+                " | country: " + sys.getCountry() + " | sunrise: " + sys.getSunrise() + " | sunset: " + sys.getSunset());
+        sb.append("\ntimezone = ");
+        sb.append(timezone);
+        sb.append("\nid = ");
+        sb.append(id);
+        sb.append("\nname = ");
+        sb.append(name);
+        sb.append("\ncod = ");
+        sb.append(cod);
+        sb.append("\nadditionalProperties = ");
         sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
-        sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
-        } else {
-            sb.append(']');
-        }
         return sb.toString();
     }
 

@@ -1,26 +1,18 @@
 package com.magicpythons.owm;
 
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.databind.DatabindException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.magicpythons.owm.weather.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Properties;
 
 public class ConnectionManager
@@ -68,6 +60,36 @@ public class ConnectionManager
         return null;
     }
 
+    public JSONObject getResponseAsJSONObject(HttpResponse response, String key) {
+        try {
+            String responseBody = (String) response.body();
+            JSONParser jsonParser = new JSONParser();
+
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(responseBody);
+
+            return (JSONObject) jsonObject.get(key);
+
+        } catch (org.json.simple.parser.ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Object getResponseAsObject(HttpResponse response, String key) {
+        try {
+            String responseBody = (String) response.body();
+            JSONParser jsonParser = new JSONParser();
+
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(responseBody);
+
+            return jsonObject.get(key);
+
+        } catch (org.json.simple.parser.ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public JSONArray getResponseAsJSONArray(HttpResponse response, String key) {
         try {
             String responseBody = (String) response.body();
@@ -77,7 +99,7 @@ public class ConnectionManager
 
             return (JSONArray) jsonObject.get(key);
 
-        } catch (org.json.simple.parser.ParseException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         return null;

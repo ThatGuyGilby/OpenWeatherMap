@@ -5,7 +5,7 @@
 *.log
 
 # Properties files
-api.properties
+src/main/resources/api.properties
 
 # BlueJ files
 *.ctxt

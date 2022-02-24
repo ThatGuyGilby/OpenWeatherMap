@@ -11,6 +11,7 @@ public class WeatherMainClass {
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse<String> httpResponse = connectionManager.getResponse(httpClient, httpRequest);
 
-        
+        Injector injector = new Injector();
+        injector.convertResponseToDTO(connectionManager, httpResponse);
     }
 }
