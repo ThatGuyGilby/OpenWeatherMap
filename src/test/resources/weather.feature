@@ -11,11 +11,11 @@ Feature: Testing Framework
     When I get a response
    Then response type is HttpResponse<String>
 
-  @RequestAnswered
+  @GetWeather
   Scenario: Injecting response into Classes
     Given I have response of type HttpResponse<String>
     When I process this data
-    Then A DTO is created
+    Then I can get the wind
 
 
 

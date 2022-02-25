@@ -1,6 +1,7 @@
 import com.magicpythons.owm.ConnectionManager;
+import com.magicpythons.owm.DataTransferObject;
+import com.magicpythons.owm.Injector;
 import io.cucumber.java.BeforeAll;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -14,14 +15,18 @@ public class MyStepdefs {
     private static HttpClient httpClient;
     private static HttpResponse<String> httpResponse;
     private static HttpRequest httpRequest;
+    private static DataTransferObject dataTransferObject;
+    private static Injector injector;
 
     @BeforeAll
     public static void setUp(){
         connectionManager = new ConnectionManager();
+        injector = new Injector();
         httpClient = HttpClient.newHttpClient();
         httpRequest = connectionManager.getRequest("https://api.openweathermap.org/data/2.5/weather?q=London&appid=");
         httpClient = HttpClient.newHttpClient();
         httpResponse = connectionManager.getResponse(httpClient, httpRequest);
+        dataTransferObject=injector.convertResponseToDTO(connectionManager, httpResponse);
     }
 
     @Given("I have sent an HTTP request")
@@ -65,16 +70,33 @@ public class MyStepdefs {
 
     @When("I process this data")
     public void iProcessThisData() {
-
+        //processed on setup
+        Assertions.assertFalse(dataTransferObject.toString().isEmpty());
     }
 
-    @Then("A DTO is created holding the response data")
-    public void eachClassShouldHoldTheRelevantData() {
-        //DataTransferObject
+    @Then("I can get the wind data")
+    public void iCanGetTheWind() {
+        System.out.println(dataTransferObject.getWind());
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    @Given("I have response of type HttpResponse<String>")
+    public void iHaveADTO() {
+        Assertions.assertFalse(dataTransferObject.toString().isEmpty());
+    }
+
+    @When("I process this data")
+    public void IgetWeather() {
+        //processed on setup
+        Assertions.assertFalse(dataTransferObject.toString().isEmpty());
+    }
+
+    @Then("I can get the weather data")
+    public void IGetStringOfWeather() {
+        System.out.println(dataTransferObject.getWind());
+    }
 
 }
 
