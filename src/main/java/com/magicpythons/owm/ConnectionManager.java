@@ -17,9 +17,6 @@ import java.util.Properties;
 
 public class ConnectionManager
 {
-    // !!!Placeholder main for testing purposes only, remove when getRequest method is accessed from elsewhere!!!
-
-
     /* A Private Method that holds the access to the api.properties file
     *  Intended to allow the use of any API Key inserted in the file
     *  without giving away the api key and hosting it on GitHub */
@@ -36,10 +33,6 @@ public class ConnectionManager
 
         return apiKey; // Returns the API Key found in the api.properties file
     }
-
-//    public void getWeather(){
-//          While commented out, this could provide useful in the future
-//    }
 
 
     public HttpRequest getRequest(String url) {
@@ -104,24 +97,4 @@ public class ConnectionManager
         }
         return null;
     }
-
-
-    /* For future reference, this splits the data apart into their Jackson related file formats
-
-    private void getJSONArray(Weather weather){
-        Clouds clouds = weather.getClouds();
-        Coord coord = weather.getCoord();
-        Main main = weather.getMain();
-        Sys sys = weather.getSys();
-        List<WeatherItem> weather1 = weather.getWeather();
-        Wind wind = weather.getWind();
-
-        System.out.println(clouds + "\n"
-                + coord + "\n"
-                + main + "\n"
-                + sys + "\n"
-                + weather1 + "\n"
-                + wind);
-    }
-    */
 }
