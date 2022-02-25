@@ -2,8 +2,7 @@ Feature: Testing Framework
   @ValidConnection
   Scenario: Accepted and received a request
     Given I have sent an HTTP request
-    And it is received by the server
-    When it is accepted
+    When it is received by the server
     Then the Status code should be valid
 
   @RequestAnswered
@@ -16,7 +15,7 @@ Feature: Testing Framework
   Scenario: Injecting response into Classes
     Given I have response of type HttpResponse<String>
     When I process this data
-    Then Each Class should hold the relevant data
+    Then A DTO is created
 
 
 

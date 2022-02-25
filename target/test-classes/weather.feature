@@ -2,10 +2,9 @@ Feature: Testing Framework
   @ValidConnection
   Scenario: Accepted and received a request
     Given I have sent an HTTP request
-    And it is received by the server
-    When it is accepted
+    When it is received by the server
     Then the Status code should be valid
-    
+
   @RequestAnswered
  Scenario: Response is given
    Given I have made a successful request
