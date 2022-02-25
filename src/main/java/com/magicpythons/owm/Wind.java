@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "deg"
 })
 
-public class Wind {
+public class Wind extends Injector {
 
     @JsonProperty("speed")
     private Double speed;
