@@ -54,25 +54,25 @@ public class ConnectionManagerTests {
     }
 
 
-    //TODO: Complete this test class
+
     @Test
     @DisplayName("Given a response and key return object")
     public void givenResponseAndKeyReturnObject(){
         HttpRequest httpRequest = connectionManager.getRequest("https://api.openweathermap.org/data/2.5/weather?q=London&appid=");
         HttpResponse<String> response = connectionManager.getResponse(httpClient,httpRequest);
-        Object actual = connectionManager.getResponseAsObject(response, "visibility");
-        System.out.println(actual);
+        Object actual = connectionManager.getResponseAsObject(response, "base");
+        Assertions.assertTrue(actual.equals("stations"));
+
 
     }
-    //TODO: Complete this test class
     @Test
-    @DisplayName("Given a response and key return JSON array")
+    @DisplayName("Given a response and key return JSON array (Weather specific")
     public void givenResponseAndKeyReturnJSONArray(){
         HttpRequest httpRequest = connectionManager.getRequest("https://api.openweathermap.org/data/2.5/weather?q=London&appid=");
         HttpResponse<String> response = connectionManager.getResponse(httpClient,httpRequest);
         JSONArray actual = connectionManager.getResponseAsJSONArray(response, "weather");
-        System.out.println(actual.contains("id"));
-
+        Assertions.assertTrue(actual.get(0).toString().contains("id"));
     }
+
 
 }
