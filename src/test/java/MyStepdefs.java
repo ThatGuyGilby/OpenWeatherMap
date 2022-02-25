@@ -74,29 +74,30 @@ public class MyStepdefs {
         Assertions.assertFalse(dataTransferObject.toString().isEmpty());
     }
 
-    @Then("I can get the wind data")
+    @Then("I can get the wind")
     public void iCanGetTheWind() {
-        System.out.println(dataTransferObject.getWind());
+        //System.out.println(dataTransferObject.getWind());
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    @Given("I have response of type HttpResponse<String>")
-    public void iHaveADTO() {
-        Assertions.assertFalse(dataTransferObject.toString().isEmpty());
-    }
+//    @Given("I have response of type HttpResponse<String>")
+//    public void iHaveADTO() {
+//        Assertions.assertFalse(dataTransferObject.toString().isEmpty());
+//    }
+//
+//    @When("I process this data")
+//    public void IgetWeather() {
+//        //processed on setup
+//        Assertions.assertFalse(dataTransferObject.toString().isEmpty());
+//    }
+//
+//    @Then("I can get the weather data")
+//    public void IGetStringOfWeather() {
+//
+//    }
 
-    @When("I process this data")
-    public void IgetWeather() {
-        //processed on setup
-        Assertions.assertFalse(dataTransferObject.toString().isEmpty());
-    }
-
-    @Then("I can get the weather data")
-    public void IGetStringOfWeather() {
-        System.out.println(dataTransferObject.getWind());
-    }
 
 }
 
