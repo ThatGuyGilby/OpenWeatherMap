@@ -89,7 +89,7 @@ public class ConnectionManager
             JSONParser jsonParser = new JSONParser();
 
             JSONObject jsonObject = (JSONObject) jsonParser.parse(responseBody);
-
+;
             return (JSONArray) jsonObject.get(key);
 
         } catch (ParseException e) {
