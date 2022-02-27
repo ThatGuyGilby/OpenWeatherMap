@@ -3,14 +3,11 @@ package com.magicpythons.owm;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.junit.Assert;
 import org.junit.jupiter.api.*;
 
-import java.net.ConnectException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.sql.Connection;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -19,12 +16,10 @@ public class ConnectionManagerTests {
     private static HttpClient httpClient;
 
     @BeforeAll
-    public static void setUp(){
+    public static void setUp() {
         connectionManager = new ConnectionManager();
         httpClient = HttpClient.newHttpClient();
-
     }
-
 
     @Test
     @DisplayName("Given A valid url String, return a http request")
@@ -38,19 +33,19 @@ public class ConnectionManagerTests {
     @Test
     @Timeout(5)
     @DisplayName("Given a valid http request and client, return status code 200")
-    public void givenRequestAndClientReturnHttpResponseString(){
+    public void givenRequestAndClientReturnHttpResponseString() {
         HttpRequest httpRequest = connectionManager.getRequest("https://api.openweathermap.org/data/2.5/weather?q=London&appid=");
         HttpResponse<String> actual = connectionManager.getResponse(httpClient, httpRequest);
         System.out.println(actual);
-        Assertions.assertTrue(actual.statusCode()>=200 && actual.statusCode()<204);
+        Assertions.assertTrue(actual.statusCode() >= 200 && actual.statusCode() < 204);
     }
 
     @Test
     @Timeout(5)
     @DisplayName("Given a valid http response and key return JSONObject")
-    public void givenAValidHttpResponseAndKeyReturnJSONObject(){
+    public void givenAValidHttpResponseAndKeyReturnJSONObject() {
         HttpRequest httpRequest = connectionManager.getRequest("https://api.openweathermap.org/data/2.5/weather?q=London&appid=");
-        HttpResponse<String> response = connectionManager.getResponse(httpClient,httpRequest);
+        HttpResponse<String> response = connectionManager.getResponse(httpClient, httpRequest);
         JSONObject actual = connectionManager.getResponseAsJSONObject(response, "clouds");
         System.out.println(actual);
         Assertions.assertTrue(actual.containsKey("all"));
@@ -59,35 +54,30 @@ public class ConnectionManagerTests {
     @Test
     @Timeout(5)
     @DisplayName("Given a Invalid http response and key return JSONObject")
-    public void givenAInValidHttpResponseAndKeyReturnJSONObject(){
+    public void givenAInValidHttpResponseAndKeyReturnJSONObject() {
         HttpRequest httpRequest = connectionManager.getRequest("https://api.openweathermaggvedp.org/data/2.5/weather?q=London&appid=");
-        HttpResponse<String> response = connectionManager.getResponse(httpClient,httpRequest);
+        HttpResponse<String> response = connectionManager.getResponse(httpClient, httpRequest);
         assertThrows(NullPointerException.class,
-                ()->{connectionManager.getResponseAsJSONObject(response, "clouds");
+                () -> {
+                    connectionManager.getResponseAsJSONObject(response, "clouds");
                 });
-
     }
-
-
 
     @Test
     @DisplayName("Given a response and key return object")
-    public void givenResponseAndKeyReturnObject(){
+    public void givenResponseAndKeyReturnObject() {
         HttpRequest httpRequest = connectionManager.getRequest("https://api.openweathermap.org/data/2.5/weather?q=London&appid=");
-        HttpResponse<String> response = connectionManager.getResponse(httpClient,httpRequest);
+        HttpResponse<String> response = connectionManager.getResponse(httpClient, httpRequest);
         Object actual = connectionManager.getResponseAsObject(response, "base");
         Assertions.assertTrue(actual.equals("stations"));
-
-
     }
+
     @Test
     @DisplayName("Given a response and key return JSON array (Weather specific")
-    public void givenResponseAndKeyReturnJSONArray(){
+    public void givenResponseAndKeyReturnJSONArray() {
         HttpRequest httpRequest = connectionManager.getRequest("https://api.openweathermap.org/data/2.5/weather?q=London&appid=");
-        HttpResponse<String> response = connectionManager.getResponse(httpClient,httpRequest);
+        HttpResponse<String> response = connectionManager.getResponse(httpClient, httpRequest);
         JSONArray actual = connectionManager.getResponseAsJSONArray(response, "weather");
         Assertions.assertTrue(actual.get(0).toString().contains("id"));
     }
-
-
 }

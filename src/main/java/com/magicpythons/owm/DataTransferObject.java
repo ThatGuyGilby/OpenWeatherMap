@@ -14,19 +14,19 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "coord",
-    "weather",
-    "base",
-    "main",
-    "visibility",
-    "wind",
-    "clouds",
-    "dt",
-    "sys",
-    "timezone",
-    "id",
-    "name",
-    "cod"
+        "coord",
+        "weather",
+        "base",
+        "main",
+        "visibility",
+        "wind",
+        "clouds",
+        "dt",
+        "sys",
+        "timezone",
+        "id",
+        "name",
+        "cod"
 })
 
 public class DataTransferObject {
@@ -233,8 +233,7 @@ public class DataTransferObject {
         sb.append("\ncod = ");
         sb.append(cod);
         sb.append("\nadditionalProperties = ");
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
+        sb.append(((this.additionalProperties == null) ? "<null>" : this.additionalProperties));
         return sb.toString();
     }
-
 }
