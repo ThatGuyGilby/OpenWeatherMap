@@ -11,8 +11,9 @@
 > - [Project Management](#Project-Management)
 
 ## Summary
-> This program is a test framework for the Open Weather API where it makes an API call
-> and retrieves the JSON Objects within the JSON file and convert the response into a Data Transfer Object
+> This program is a test framework for the Open Weather API. The test frame work makes an API call
+> and retrieves an API (HTTP) response and retrieve a JSON file, which will then be
+> converted into a Data Transfer Object by accessing each values of the JSON Objects inside the JSON file.
 
 ## Dependencies
 > + JUnit Jupiter - For unit testing
@@ -66,7 +67,7 @@
 >> <p align="center"> <img src="https://cdn.discordapp.com/attachments/935470190127353868/947266240685174805/unknown.png"/> </p>
 > 6. Double-click the resources option to make a `resources` folder.
 >> <p align="center"> <img src="https://cdn.discordapp.com/attachments/935470190127353868/947267293770023022/unknown.png"/> </p>
-> 7. Name it `api.properties` and insert the following: `api_key=c977119cbca2b2f41098fbaf53a315ae`
+> 7. Create a file in the `resources` you made and name it `api.properties` and insert the following: `api_key=c977119cbca2b2f41098fbaf53a315ae`
 >> <p align="center"> <img src="https://cdn.discordapp.com/attachments/935470190127353868/947268712354938950/unknown.png"/> </p>
 
 ## How to use the project
