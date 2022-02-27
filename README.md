@@ -74,7 +74,13 @@
 > 1. Run all the JUnit tests and BDD tests to test the Open Weather API framework
 > 2. Additionally, you can test it manually by running the `WeatherMainClass` or by doing the following
 >> <p align="center"> <img src="https://cdn.discordapp.com/attachments/935470190127353868/947475119943581706/unknown.png"/> </p>
-> 3. 
+> 3. Create an instance of the ConnectionManager and HTTP Client
+> 4. Get the HttpRequest through the ConnectionManager
+> 5. Once the request is set up, you can then make an API call and get the HTTP Response
+> 6. Then create an instance of the Injector class
+> 7. Use the injector class to make a Data Transfer Object by passing in the HTTP Response
+> 8. Finally, print out the injector class
+
 ## Classes
 
 > + DataTransferObject
@@ -94,6 +100,24 @@
 
 ## Testing and Outcome
 
+> Automated testing:
+>> We used the following practices for our automated tests:
+>>
+>> JUnit
+>> 
+>> Mocking
+>> 
+>> Assumptions
+>> 
+>> Cucumber - BDD
+>
+> Manual Testing:
+>> We did a simple run down of the framework to ensure that it returns a DataTransferObject which
+>> contains all the valid values from the rest APIs' response 
+>
+> Outcome:
+>> Based off the product owner's requirements, we can conclude that we completed all the tasks
+>> given both through automated and manual testing
 
 ## Project Tasks Management
 
