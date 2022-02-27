@@ -2,7 +2,6 @@ package com.magicpythons.owm;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -54,7 +53,7 @@ public class DataTransferObjectTests
             "  }                         ";
 
     @Test
-    void fromJson()
+    void sunrisefromJson()
     {
         try {
             JsonNode node = JsonUtilityClass.parse(testResponse);
@@ -62,6 +61,38 @@ public class DataTransferObjectTests
 
             int expected = 1560343627;
             int actual = dataTransferObject.getSys().getSunrise();
+
+            Assertions.assertEquals(expected, actual);
+
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    void messagefromJson()
+    {
+        try {
+            JsonNode node = JsonUtilityClass.parse(testResponse);
+            DataTransferObject dataTransferObject = JsonUtilityClass.fromJson(node);
+
+            Double expected = 0.0139;
+            Double actual = dataTransferObject.getSys().getMessage();
+
+            Assertions.assertEquals(expected, actual);
+
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    void visibilityfromJson()
+    {
+        try {
+            JsonNode node = JsonUtilityClass.parse(testResponse);
+            DataTransferObject dataTransferObject = JsonUtilityClass.fromJson(node);
+
+            int expected = 5122;
+            int actual = dataTransferObject.getSys().getId();
 
             Assertions.assertEquals(expected, actual);
 
