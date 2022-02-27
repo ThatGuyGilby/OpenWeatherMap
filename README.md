@@ -8,10 +8,10 @@
 > - [How to Use the Project](#How-to-use-the-project)
 > - [Classes](#Classes)
 > - [Testing and Outcome](#Testing-and-Outcome)
-> - [Project Management](#Project-Management)
+> - [Project Management](#Project-tasks-Management)
 
 ## Summary
-> This program is a test framework for the Open Weather API. The test frame work makes an API call
+> This program is a test framework for the Open Weather API. The test framework makes an API call
 > and retrieves an API (HTTP) response and retrieve a JSON file, which will then be
 > converted into a Data Transfer Object by accessing each values of the JSON Objects inside the JSON file.
 
@@ -67,13 +67,43 @@
 >> <p align="center"> <img src="https://cdn.discordapp.com/attachments/935470190127353868/947266240685174805/unknown.png"/> </p>
 > 6. Double-click the resources option to make a `resources` folder.
 >> <p align="center"> <img src="https://cdn.discordapp.com/attachments/935470190127353868/947267293770023022/unknown.png"/> </p>
-> 7. Create a file in the `resources` you made and name it `api.properties` and insert the following: `api_key=c977119cbca2b2f41098fbaf53a315ae`
->> <p align="center"> <img src="https://cdn.discordapp.com/attachments/935470190127353868/947268712354938950/unknown.png"/> </p>
+> 7. Create a file in the `resources` you made and name it `api.properties` and insert "api_key=" + your Open Weather Map API key
 
 ## How to use the project
 
+> 1. Run all the JUnit tests and BDD tests to test the Open Weather API framework
+> 2. Additionally, you can test it manually by running the `WeatherMainClass` or by doing the following
+>> <p align="center"> <img src="https://cdn.discordapp.com/attachments/935470190127353868/947475119943581706/unknown.png"/> </p>
+> 3. 
 ## Classes
+
+> + DataTransferObject
+>> A class that follows a `design pattern` where it acts like a `data structure`, allowing multiple
+>> classes to be stored in a singular class for developers and testers to have easy and fast access on specific
+>> classes and attributes that the Data Transfer Object contains
+> + ConnectionManager
+>> The class which makes the Open `Weather API call` with the correct `API key `and receives the `HTTP response`
+>> based off the current weather in the location given in the link. This class also provides the necessary methods
+>> to extract the JSON `object/arrays and values` within the JSON file that the response returns
+> + Injector
+>> The class which takes in the HTTP response through the connection manager and convert the values
+>> it gets from the JSON objects into the attributes of the Data Transfer Object class
+> + Weather DTO attribute classes
+>> Classes which represents the attributes of a weather, such as the `wind` class which has the attributes
+>> of speed and degrees
 
 ## Testing and Outcome
 
-## Project Management
+
+## Project Tasks Management
+
+> The team used Trello in order to manage and keep track of all the tasks from the requirements in this project
+> where each task is assigned to at least one member of our team. Since the project is small, the Trello
+> board will look smaller than usual
+> 
+> Before:
+>> <p align="center"> <img src="https://cdn.discordapp.com/attachments/935470190127353868/947473317168832532/unknown.png"/> </p>
+>
+> After:
+>
+>> <p align="center"> <img src="https://cdn.discordapp.com/attachments/935470190127353868/947473209018687488/unknown.png"/> </p>

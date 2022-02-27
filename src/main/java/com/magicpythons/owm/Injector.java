@@ -29,7 +29,6 @@ public class Injector {
         insertName(dto,connectionManager, response);
         insertCod(dto,connectionManager, response);
 
-        System.out.println(dto);
         return dto;
     }
 
