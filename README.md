@@ -1,4 +1,4 @@
-# EmployeeCSVProject
+# Open Weather API Framework
 
 ## Table of Contents
 
