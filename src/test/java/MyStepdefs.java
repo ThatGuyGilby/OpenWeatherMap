@@ -6,6 +6,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
+
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -19,14 +20,14 @@ public class MyStepdefs {
     private static Injector injector;
 
     @BeforeAll
-    public static void setUp(){
+    public static void setUp() {
         connectionManager = new ConnectionManager();
         injector = new Injector();
         httpClient = HttpClient.newHttpClient();
         httpRequest = connectionManager.getRequest("https://api.openweathermap.org/data/2.5/weather?q=London&appid=");
         httpClient = HttpClient.newHttpClient();
         httpResponse = connectionManager.getResponse(httpClient, httpRequest);
-        dataTransferObject=injector.convertResponseToDTO(connectionManager, httpResponse);
+        dataTransferObject = injector.convertResponseToDTO(connectionManager, httpResponse);
     }
 
     @Given("I have sent an HTTP request")
@@ -36,19 +37,19 @@ public class MyStepdefs {
 
     @When("it is received by the server")
     public void itIsReceivedByTheServer() {
-        Assertions.assertTrue(httpResponse.statusCode()>0);
+        Assertions.assertTrue(httpResponse.statusCode() > 0);
     }
 
     @Then("the Status code should be valid")
     public void the_status_code_should_be_valid() {
-        Assertions.assertTrue(httpResponse.statusCode()> 199 &&httpResponse.statusCode()< 203);
+        Assertions.assertTrue(httpResponse.statusCode() > 199 && httpResponse.statusCode() < 203);
     }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Given("I have made a successful request")
     public void iHaveMadeASuccessfulRequest() {
-        Assertions.assertTrue(httpResponse.statusCode()> 199 &&httpResponse.statusCode()< 203);
+        Assertions.assertTrue(httpResponse.statusCode() > 199 && httpResponse.statusCode() < 203);
     }
 
     @When("I get a response")
@@ -78,26 +79,5 @@ public class MyStepdefs {
     public void iCanGetTheWind() {
         //System.out.println(dataTransferObject.getWind());
     }
-
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//    @Given("I have response of type HttpResponse<String>")
-//    public void iHaveADTO() {
-//        Assertions.assertFalse(dataTransferObject.toString().isEmpty());
-//    }
-//
-//    @When("I process this data")
-//    public void IgetWeather() {
-//        //processed on setup
-//        Assertions.assertFalse(dataTransferObject.toString().isEmpty());
-//    }
-//
-//    @Then("I can get the weather data")
-//    public void IGetStringOfWeather() {
-//
-//    }
-
-
 }
 

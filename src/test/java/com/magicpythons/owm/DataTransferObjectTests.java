@@ -5,8 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class DataTransferObjectTests
-{
+public class DataTransferObjectTests {
     private String testResponse = "{\n" +
             "  \"coord\": {\n" +
             "    \"lon\": -122.08,\n" +
@@ -53,8 +52,7 @@ public class DataTransferObjectTests
             "  }                         ";
 
     @Test
-    void sunrisefromJson()
-    {
+    void sunrisefromJson() {
         try {
             JsonNode node = JsonUtilityClass.parse(testResponse);
             DataTransferObject dataTransferObject = JsonUtilityClass.fromJson(node);
@@ -68,9 +66,9 @@ public class DataTransferObjectTests
             e.printStackTrace();
         }
     }
+
     @Test
-    void messagefromJson()
-    {
+    void messagefromJson() {
         try {
             JsonNode node = JsonUtilityClass.parse(testResponse);
             DataTransferObject dataTransferObject = JsonUtilityClass.fromJson(node);
@@ -84,9 +82,9 @@ public class DataTransferObjectTests
             e.printStackTrace();
         }
     }
+
     @Test
-    void visibilityfromJson()
-    {
+    void visibilityfromJson() {
         try {
             JsonNode node = JsonUtilityClass.parse(testResponse);
             DataTransferObject dataTransferObject = JsonUtilityClass.fromJson(node);

@@ -12,7 +12,7 @@ public class WeatherMainClass extends Wind {
         HttpResponse<String> httpResponse = connectionManager.getResponse(httpClient, httpRequest);
 
         Injector injector = new Injector();
-        DataTransferObject weatherDTO =  injector.convertResponseToDTO(connectionManager, httpResponse);
+        DataTransferObject weatherDTO = injector.convertResponseToDTO(connectionManager, httpResponse);
         System.out.println(weatherDTO);
     }
 }

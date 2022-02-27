@@ -3,6 +3,7 @@ package com.magicpythons.owm;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -12,12 +13,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "type",
-    "id",
-    "message",
-    "country",
-    "sunrise",
-    "sunset"
+        "type",
+        "id",
+        "message",
+        "country",
+        "sunrise",
+        "sunset"
 })
 
 public class Sys {
@@ -113,38 +114,37 @@ public class Sys {
         sb.append(Sys.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("type");
         sb.append('=');
-        sb.append(((this.type == null)?"<null>":this.type));
+        sb.append(((this.type == null) ? "<null>" : this.type));
         sb.append(',');
         sb.append("id");
         sb.append('=');
-        sb.append(((this.id == null)?"<null>":this.id));
+        sb.append(((this.id == null) ? "<null>" : this.id));
         sb.append(',');
         sb.append("message");
         sb.append('=');
-        sb.append(((this.message == null)?"<null>":this.message));
+        sb.append(((this.message == null) ? "<null>" : this.message));
         sb.append(',');
         sb.append("country");
         sb.append('=');
-        sb.append(((this.country == null)?"<null>":this.country));
+        sb.append(((this.country == null) ? "<null>" : this.country));
         sb.append(',');
         sb.append("sunrise");
         sb.append('=');
-        sb.append(((this.sunrise == null)?"<null>":this.sunrise));
+        sb.append(((this.sunrise == null) ? "<null>" : this.sunrise));
         sb.append(',');
         sb.append("sunset");
         sb.append('=');
-        sb.append(((this.sunset == null)?"<null>":this.sunset));
+        sb.append(((this.sunset == null) ? "<null>" : this.sunset));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
+        sb.append(((this.additionalProperties == null) ? "<null>" : this.additionalProperties));
         sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
+        if (sb.charAt((sb.length() - 1)) == ',') {
+            sb.setCharAt((sb.length() - 1), ']');
         } else {
             sb.append(']');
         }
         return sb.toString();
     }
-
 }

@@ -15,12 +15,13 @@ import java.net.http.HttpResponse;
 
 import java.util.Properties;
 
-public class ConnectionManager
-{
-    /** A Private Method that holds the access to the api.properties file
-    *  Intended to allow the use of any API Key inserted in the file
-    *  without giving away the api key and hosting it on GitHub */
-    private String getAPIKey(){
+public class ConnectionManager {
+    /**
+     * A Private Method that holds the access to the api.properties file
+     * Intended to allow the use of any API Key inserted in the file
+     * without giving away the api key and hosting it on GitHub
+     */
+    private String getAPIKey() {
         String apiKey = null;
         try (InputStream inputStream = new FileInputStream("src/main/resources/api.properties")) {
             Properties properties = new Properties();
@@ -106,7 +107,7 @@ public class ConnectionManager
             JSONParser jsonParser = new JSONParser();
 
             JSONObject jsonObject = (JSONObject) jsonParser.parse(responseBody);
-;
+            ;
             return (JSONArray) jsonObject.get(key);
 
         } catch (ParseException e) {

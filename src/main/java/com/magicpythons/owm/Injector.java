@@ -1,8 +1,5 @@
 package com.magicpythons.owm;
 
-import io.cucumber.java.bs.I;
-import io.cucumber.java.eo.Do;
-import io.cucumber.java.sl.In;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -24,14 +21,14 @@ public class Injector {
         insertWeather(dto, connectionManager, response);
         insertBase(dto, connectionManager, response);
         insertMain(dto, connectionManager, response);
-        insertVisibility(dto,connectionManager, response);
-        insertClouds(dto,connectionManager, response);
-        insertDt(dto,connectionManager, response);
-        insertSys(dto,connectionManager, response);
-        insertTimezone(dto,connectionManager, response);
-        insertId(dto,connectionManager, response);
-        insertName(dto,connectionManager, response);
-        insertCod(dto,connectionManager, response);
+        insertVisibility(dto, connectionManager, response);
+        insertClouds(dto, connectionManager, response);
+        insertDt(dto, connectionManager, response);
+        insertSys(dto, connectionManager, response);
+        insertTimezone(dto, connectionManager, response);
+        insertId(dto, connectionManager, response);
+        insertName(dto, connectionManager, response);
+        insertCod(dto, connectionManager, response);
 
         return dto;
     }
