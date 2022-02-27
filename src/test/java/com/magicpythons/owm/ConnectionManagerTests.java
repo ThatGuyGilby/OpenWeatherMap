@@ -6,10 +6,13 @@ import org.json.simple.JSONObject;
 import org.junit.Assert;
 import org.junit.jupiter.api.*;
 
+import java.net.ConnectException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.sql.Connection;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ConnectionManagerTests {
     private static ConnectionManager connectionManager;
@@ -51,6 +54,18 @@ public class ConnectionManagerTests {
         JSONObject actual = connectionManager.getResponseAsJSONObject(response, "clouds");
         System.out.println(actual);
         Assertions.assertTrue(actual.containsKey("all"));
+    }
+
+    @Test
+    @Timeout(5)
+    @DisplayName("Given a Invalid http response and key return JSONObject")
+    public void givenAInValidHttpResponseAndKeyReturnJSONObject(){
+        HttpRequest httpRequest = connectionManager.getRequest("https://api.openweathermaggvedp.org/data/2.5/weather?q=London&appid=");
+        HttpResponse<String> response = connectionManager.getResponse(httpClient,httpRequest);
+        assertThrows(NullPointerException.class,
+                ()->{connectionManager.getResponseAsJSONObject(response, "clouds");
+                });
+
     }
 
 
