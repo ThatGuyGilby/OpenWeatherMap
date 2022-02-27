@@ -12,6 +12,10 @@ import java.util.List;
 
 public class Injector {
 
+    /**
+     * By utilising the HTTP response, it used the methods below and connection manager methods to instantiate and construct
+     * a Data Transfer Object and returns its
+     */
     public DataTransferObject convertResponseToDTO(ConnectionManager connectionManager, HttpResponse<String> response) {
         DataTransferObject dto = new DataTransferObject();
 
@@ -59,6 +63,8 @@ public class Injector {
         }
         dto.setWeather(weatherList);
     }
+
+    // Methods below sets the attributes of the DTO passed in through the methods in connection manager
 
     public static void insertBase(DataTransferObject dto, ConnectionManager connectionManager, HttpResponse<String> response) {
         Object baseObject = connectionManager.getResponseAsObject(response, "base");
